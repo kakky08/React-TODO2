@@ -3,6 +3,7 @@ import "./styles.css";
 import { ToDo } from "./components/ToDo";
 import { Incomplete } from "./components/Incomplete";
 import { InProgress } from "./components/InProgress";
+import { Complete } from "./components/Complete";
 
 export const App = () => {
   const [toDo, setToDo] = useState("");
@@ -83,20 +84,11 @@ export const App = () => {
         onClickConplete={onClickConplete}
         onClickReverse={onClickReverse}
       />
-      <div className="complete-area">
-        <p className="title">完了したTODO</p>
-        <ul>
-          {complete.map((done, index) => {
-            return (
-              <div key={done} className="list-row">
-                <li>{done}</li>
-                <button onClick={() => onClickDoneReverse(index)}>戻す</button>
-                <button onClick={() => onClickDoneDelete(index)}>削除</button>
-              </div>
-            );
-          })}
-        </ul>
-      </div>
+      <Complete
+        complete={complete}
+        onClickDoneDelete={onClickDoneDelete}
+        onClickDoneReverse={onClickDoneReverse}
+      />
     </>
   );
 };
