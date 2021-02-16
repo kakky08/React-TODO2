@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./styles.css";
 import { ToDo } from "./components/ToDo";
 import { Incomplete } from "./components/Incomplete";
+import { InProgress } from "./components/InProgress";
 
 export const App = () => {
   const [toDo, setToDo] = useState("");
@@ -77,7 +78,11 @@ export const App = () => {
         onClickDoing={onClickDoing}
         onClickDelete={onClickDelete}
       />
-
+      <InProgress
+        inProgress={inProgress}
+        onClickConplete={onClickConplete}
+        onClickReverse={onClickReverse}
+      />
       <div className="complete-area">
         <p className="title">完了したTODO</p>
         <ul>
