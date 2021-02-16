@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./styles.css";
+import { ToDo } from "./components/ToDo";
 
 export const App = () => {
   const [toDo, setToDo] = useState("");
@@ -61,17 +62,12 @@ export const App = () => {
 
   return (
     <>
-      <div className="input-area">
-        <input
-          placeholder="TODOを入力"
-          value={toDo}
-          onChange={onChangeToDo}
-          disabled={incomplete.length >= 5}
-        />
-        <button onClick={onClickAdd} disabled={incomplete.length >= 5}>
-          追加
-        </button>
-      </div>
+      <ToDo
+        toDo={toDo}
+        onChangeToDo={onChangeToDo}
+        disabled={incomplete.length >= 5}
+        onClickAdd={onClickAdd}
+      />
       {incomplete.length >= 5 && (
         <p style={{ color: "red" }}>これ以上追加できません</p>
       )}
