@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./styles.css";
 import { ToDo } from "./components/ToDo";
+import { Incomplete } from "./components/Incomplete";
 
 export const App = () => {
   const [toDo, setToDo] = useState("");
@@ -71,34 +72,12 @@ export const App = () => {
       {incomplete.length >= 5 && (
         <p style={{ color: "red" }}>これ以上追加できません</p>
       )}
-      <div className="incomplete-area">
-        <p className="title">未完了のTODO</p>
-        <ul>
-          {incomplete.map((todo, index) => {
-            return (
-              <div key={todo} className="list-row">
-                <li>{todo}</li>
-                <button onClick={() => onClickDoing(index)}>進行中</button>
-                <button onClick={() => onClickDelete(index)}>削除</button>
-              </div>
-            );
-          })}
-        </ul>
-      </div>
-      <div className="inProgress-area">
-        <p className="title">進行中のTODO</p>
-        <ul>
-          {inProgress.map((doing, index) => {
-            return (
-              <div key={doing} className="list-row">
-                <li>{doing}</li>
-                <button onClick={() => onClickConplete(index)}>完了</button>
-                <button onClick={() => onClickReverse(index)}>戻す</button>
-              </div>
-            );
-          })}
-        </ul>
-      </div>
+      <Incomplete
+        incomplete={incomplete}
+        onClickDoing={onClickDoing}
+        onClickDelete={onClickDelete}
+      />
+
       <div className="complete-area">
         <p className="title">完了したTODO</p>
         <ul>
